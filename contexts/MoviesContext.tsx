@@ -15,14 +15,14 @@ interface MoviesContextInterface {
 
 const MoviesContext = createContext<MoviesContextInterface>({})
 
-export const MovieProvider = ({children}: MovieProviderType): JSX.Element => {
+export const MoviesProvider = ({children}: MovieProviderType): JSX.Element => {
     const [favourites, setFavourites] = useState<MovieModel[]>([])
     const [hiddenIDs, setHiddenIDs] = useState<string[]>([])
 
-    const reset = () => {
-        StorageService.setItem('favourites', [])
-        StorageService.setItem('hiddenIDs', [])
-    }
+    // const reset = () => {
+    //     StorageService.setItem('favourites', [])
+    //     StorageService.setItem('hiddenIDs', [])
+    // }
     //restore favourites & hiddenIDs from local storage
     useEffect(() => {
         const rehydrate = async () => {
@@ -58,4 +58,4 @@ export const MovieProvider = ({children}: MovieProviderType): JSX.Element => {
     )
 }//MovieProvider
 
-export default () => useContext(MoviesContext)
+export default (): MoviesContextInterface => useContext(MoviesContext)
