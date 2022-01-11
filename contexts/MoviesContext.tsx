@@ -3,7 +3,7 @@ import * as StorageService from '../services/StorageService'
 import {MovieModel} from '../models/Movies.model'
 
 interface MovieProviderType {
-    children: JSX.Element
+    children: JSX.Element[]
 }
 
 interface MoviesContextInterface {
