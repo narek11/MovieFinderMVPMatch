@@ -1,31 +1,26 @@
-import { StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
+import {View} from 'react-native'
+import {RootTabScreenProps, MovieType} from '../types'
+import MovieList from '../components/Movies/MovieList'
 
-const FavouritesScreen = ({ navigation }: RootTabScreenProps<'Favourites'>) => {
+import useMovieContext from '../contexts/MoviesContext'
+import {excludeMovies} from '../utils/movies.util'
+
+
+const FavouritesScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
+    const {favourites, addToFavourites, hideMovie, hiddenIDs} = useMovieContext()
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Favourites screen</Text>
-            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <View style={{flex: 1}}>
+            <View style={{flex: 1}}>
+                <MovieList
+                    movies={excludeMovies(hiddenIDs, favourites)}
+                    addToFavourites={(movie: MovieType) => addToFavourites(movie)}
+                    hideMovie={hideMovie}
+                    allowToFavour={false}
+                />
+            </View>
         </View>
-    );
+    )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: '80%',
-    },
-});
 
 export default FavouritesScreen
