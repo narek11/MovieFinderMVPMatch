@@ -1,4 +1,4 @@
-export interface MovieType {
+export interface MovieInterface {
     Title: string;
     Year: string;
     imdbID: string;
@@ -6,18 +6,18 @@ export interface MovieType {
     Poster: string;
 }
 
-export interface MoviesType {
-    Search: MovieType[];
+export interface MoviesInterface {
+    Search: MovieInterface[];
     totalResults: string;
     Response: string;
 }
 
-export interface RatingType {
+export interface RatingInterface {
     Source: string;
     Value: string;
 }
 
-export interface MovieDetailsType {
+export interface MovieDetailsInterface {
     Title: string;
     Year: string;
     Rated: string;
@@ -32,7 +32,7 @@ export interface MovieDetailsType {
     Country: string;
     Awards: string;
     Poster: string;
-    Ratings: RatingType[];
+    Ratings: RatingInterface[];
     Metascore: string;
     imdbRating: string;
     imdbVotes: string;
