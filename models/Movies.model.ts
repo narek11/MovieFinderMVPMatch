@@ -1,8 +1,8 @@
-import {MovieType, MovieDetailsType, MoviesType, RatingType} from '../constants/API.types'
+import {MovieInterface, MovieDetailsInterface, MoviesInterface, RatingInterface} from '../constants/API.types'
 export class RatingModel {
     source: string
     value: string
-    constructor(data: RatingType) {
+    constructor(data: RatingInterface) {
         this.source = data.Source
         this.value = data.Value
     }
@@ -15,7 +15,7 @@ export class MovieModel {
     type: string;
     poster: string;
 
-    constructor(data: MovieType) {
+    constructor(data: MovieInterface) {
         this.title = data.Title
         this.year = data.Year
         this.imdbID = data.imdbID
@@ -28,7 +28,7 @@ export class MoviesModel {
     search: MovieModel[];
     totalResults: string;
     response: string;
-    constructor(data: MoviesType) {
+    constructor(data: MoviesInterface) {
         this.search = data.Search.map(m => new MovieModel(m))
         this.totalResults = data.totalResults
         this.response = data.Response
@@ -61,7 +61,7 @@ export class MovieDetailsModel {
     production: string;
     website: string;
     response: string;
-    constructor(data: MovieDetailsType) {
+    constructor(data: MovieDetailsInterface) {
         this.title = data.Title
         this.year = data.Year
         this.rated = data.Rated
