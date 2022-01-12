@@ -17,6 +17,7 @@ const FavouritesScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
                 hideMovie={hideMovie}
                 allowToFavour={false}
                 onMoviePress={(movie: MovieModel) => navigation.navigate('MovieDetailsModal', {imdbID: movie.imdbID})}
+                listEmptyMessage='No favourites'
             />
         </View>
     )

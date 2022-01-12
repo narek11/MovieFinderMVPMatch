@@ -29,7 +29,9 @@ const Movie = ({title, poster, addToFavourites, hideMovie, allowToFavour, onMovi
                 )}
             </View>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.rating}>Rating <Text style={styles.ratingValue}>{rating}</Text></Text>
+            {rating && (
+                <Text style={styles.rating}>Rating <Text style={styles.ratingValue}>{rating}</Text></Text>
+            )}
             <Text>{desc}</Text>
         </TouchableOpacity>
     )
