@@ -39,6 +39,7 @@ const SearchScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
                     allowToFavour
                     movies={excludeMovies(hiddenIDs, filterMovies(favourites, movies))}
                     addToFavourites={addToFavourites}
+                    onMoviePress={(movie: MovieModel) => navigation.navigate('MovieDetailsModal', {imdbID: movie.imdbID})}
                     hideMovie={hideMovie}/>
             </View>
         </View>

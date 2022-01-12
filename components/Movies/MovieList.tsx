@@ -7,10 +7,11 @@ interface MovieListType {
     movies: MovieModel[];
     hideMovie: (mv: MovieModel) => void;
     allowToFavour?: boolean;
-    addToFavourites: (mv: MovieModel) => void
+    addToFavourites: (mv: MovieModel) => void;
+    onMoviePress: (mv: MovieModel) => void;
 }
 
-const MovieList = ({movies, addToFavourites, hideMovie, allowToFavour = true}: MovieListType): JSX.Element => (
+const MovieList = ({movies, addToFavourites, hideMovie, onMoviePress, allowToFavour = true}: MovieListType): JSX.Element => (
     <FlatList
         data={movies}
         renderItem={({item: movie}) => {
@@ -23,6 +24,7 @@ const MovieList = ({movies, addToFavourites, hideMovie, allowToFavour = true}: M
                     addToFavourites={() => addToFavourites(movie)}
                     hideMovie={() => hideMovie(movie)}
                     allowToFavour={allowToFavour}
+                    onMoviePress={() => onMoviePress(movie) }
                 />
             )
         }}

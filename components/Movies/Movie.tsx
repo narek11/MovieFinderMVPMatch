@@ -1,5 +1,4 @@
 import {StyleSheet, Image, TouchableOpacity, View, Text} from 'react-native'
-import {MoviesModel} from '../../models/Movies.model'
 import * as React from 'react'
 
 interface MovieType {
@@ -9,11 +8,14 @@ interface MovieType {
     addToFavourites: () => void;
     hideMovie: () => void;
     allowToFavour: boolean;
+    onMoviePress: () => void;
+    rating?: string;
+    desc?: string;
 }
 
-const Movie = ({title, poster, imdbID, addToFavourites, hideMovie, allowToFavour}: MovieType) => {
+const Movie = ({title, poster, addToFavourites, hideMovie, allowToFavour, onMoviePress, rating, desc}: MovieType) => {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onMoviePress}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start'}}>
                 <Image source={{uri: poster}} style={styles.poster} resizeMode="cover"/>
                 <TouchableOpacity onPress={hideMovie} style={{backgroundColor: 'white'}}>
@@ -27,6 +29,8 @@ const Movie = ({title, poster, imdbID, addToFavourites, hideMovie, allowToFavour
                 )}
             </View>
             <Text style={styles.title}>{title}</Text>
+            <Text style={styles.rating}>Rating <Text style={styles.ratingValue}>{rating}</Text></Text>
+            <Text>{desc}</Text>
         </TouchableOpacity>
     )
 }
@@ -44,6 +48,12 @@ const styles = StyleSheet.create({
     poster: {
         height: 200,
         width: 200
+    },
+    rating: {
+        fontSize: 20
+    },
+    ratingValue: {
+        fontWeight: 'bold'
     }
 })
 

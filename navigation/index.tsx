@@ -1,13 +1,14 @@
-import {FontAwesome, Octicons} from '@expo/vector-icons';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import * as React from 'react';
-import {ColorSchemeName} from 'react-native';
+import {FontAwesome, Octicons} from '@expo/vector-icons'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native'
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import * as React from 'react'
+import {ColorSchemeName} from 'react-native'
 
-import FavouritesScreen from '../screens/FavouritesScreen';
-import SearchScreen from '../screens/SearchScreen';
-import {RootStackParamList, RootTabParamList} from '../types';
+import FavouritesScreen from '../screens/FavouritesScreen'
+import SearchScreen from '../screens/SearchScreen'
+import MovieDetailsScreen from '../screens/MovieDetailsScreen'
+import {RootStackParamList, RootTabParamList} from '../types'
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     return (
@@ -15,27 +16,30 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
             theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
             <RootNavigator/>
         </NavigationContainer>
-    );
+    )
 }
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 function RootNavigator() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Root" component={BottomTabNavigator} options={{headerShown: false}}/>
+            <Stack.Group screenOptions={{presentation: 'modal'}}>
+                <Stack.Screen name='MovieDetailsModal' component={MovieDetailsScreen} options={{title: 'Movie Details'}}/>
+            </Stack.Group>
         </Stack.Navigator>
-    );
+    )
 }
 
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createBottomTabNavigator<RootTabParamList>()
 
 function BottomTabNavigator() {
     return (
         <BottomTab.Navigator
             initialRouteName="Favourites"
             screenOptions={{
-                headerShown: false,
+                headerShown: false
             }}>
             <BottomTab.Screen
                 name="Favourites"
@@ -54,5 +58,5 @@ function BottomTabNavigator() {
                 }}
             />
         </BottomTab.Navigator>
-    );
+    )
 }
