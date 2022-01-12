@@ -3,7 +3,7 @@ import {RootTabScreenProps} from '../types'
 import MovieList from '../components/Movies/MovieList'
 import {MovieModel} from '../models/Movies.model'
 import useMovieContext from '../contexts/MoviesContext'
-import {excludeMovies} from '../utils/movies.util'
+import {ignoreHiddens} from '../utils/movies.util'
 
 
 const FavouritesScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
@@ -12,7 +12,7 @@ const FavouritesScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
     return (
         <View style={{flex: 1}}>
             <MovieList
-                movies={excludeMovies(hiddenIDs, favourites)}
+                movies={ignoreHiddens(hiddenIDs, favourites)}
                 addToFavourites={(movie: MovieModel) => addToFavourites(movie)}
                 hideMovie={hideMovie}
                 allowToFavour={false}

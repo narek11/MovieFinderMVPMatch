@@ -4,7 +4,7 @@ import {RootTabScreenProps} from '../types'
 import * as MovieService from '../services/MoviesService'
 import MovieList from '../components/Movies/MovieList'
 import useMovieContext from '../contexts/MoviesContext'
-import {filterMovies, excludeMovies} from '../utils/movies.util'
+import {ignoreFavourites, ignoreHiddens} from '../utils/movies.util'
 import {MovieModel} from '../models/Movies.model'
 
 const SearchScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
@@ -34,7 +34,7 @@ const SearchScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
             <View style={{flex: 1}}>
                 <MovieList
                     allowToFavour
-                    movies={excludeMovies(hiddenIDs, filterMovies(favourites, movies))}
+                    movies={ignoreHiddens(hiddenIDs, ignoreFavourites(favourites, movies))}
                     addToFavourites={addToFavourites}
                     onMoviePress={(movie: MovieModel) => navigation.navigate('MovieDetailsModal', {imdbID: movie.imdbID})}
                     hideMovie={hideMovie}/>
