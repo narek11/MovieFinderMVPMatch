@@ -14,9 +14,6 @@ const SearchScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
 
     const [loading, setLoading] = useState<boolean>(false)
 
-    useEffect(() => {
-    }, [])
-
     const _search = async () => {
         setLoading(true)
         const movies = await MovieService.searchMovieByTitle(text)
