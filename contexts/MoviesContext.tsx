@@ -10,7 +10,7 @@ interface MoviesContextInterface {
     favourites: MovieModel[];
     addToFavourites: (mv: MovieModel) => void;
     hiddenIDs: string[];
-    hideMovie: (mv: MovieModel) => void
+    hideMovie: (mv: MovieModel) => void;
 }
 
 const MoviesContext = createContext<MoviesContextInterface>({})
@@ -19,11 +19,6 @@ export const MoviesProvider = ({children}: MovieProviderType): JSX.Element => {
     const [favourites, setFavourites] = useState<MovieModel[]>([])
     const [hiddenIDs, setHiddenIDs] = useState<string[]>([])
 
-    // const reset = () => {
-    //     StorageService.setItem('favourites', [])
-    //     StorageService.setItem('hiddenIDs', [])
-    // }
-    //restore favourites & hiddenIDs from local storage
     useEffect(() => {
         const rehydrate = async () => {
             const _favourites: MovieModel[] = await StorageService.getItem('favourites') || []
@@ -33,7 +28,6 @@ export const MoviesProvider = ({children}: MovieProviderType): JSX.Element => {
         }
 
         rehydrate()
-        // reset()
     }, [])
 
     const addToFavourites = (movie: MovieModel) => {

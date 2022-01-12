@@ -11,15 +11,13 @@ const FavouritesScreen = ({navigation}: RootTabScreenProps<'Search'>) => {
 
     return (
         <View style={{flex: 1}}>
-            <View style={{flex: 1}}>
-                <MovieList
-                    movies={excludeMovies(hiddenIDs, favourites)}
-                    addToFavourites={(movie: MovieModel) => addToFavourites(movie)}
-                    hideMovie={hideMovie}
-                    allowToFavour={false}
-                    onMoviePress={(movie: MovieModel) => navigation.navigate('MovieDetailsModal', {imdbID: movie.imdbID})}
-                />
-            </View>
+            <MovieList
+                movies={excludeMovies(hiddenIDs, favourites)}
+                addToFavourites={(movie: MovieModel) => addToFavourites(movie)}
+                hideMovie={hideMovie}
+                allowToFavour={false}
+                onMoviePress={(movie: MovieModel) => navigation.navigate('MovieDetailsModal', {imdbID: movie.imdbID})}
+            />
         </View>
     )
 }

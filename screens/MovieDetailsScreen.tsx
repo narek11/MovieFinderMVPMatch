@@ -26,7 +26,6 @@ const MovieDetailsScreen = ({navigation, route}): JSX.Element => {
             <ActivityIndicator/>
         )
     }
-    console.log('movieDetails', movieDetails)
     return (
         <View style={{flex: 1, alignItems: 'flex-end'}}>
             <Button onPress={() => navigation.goBack()} title="Dismiss" />
